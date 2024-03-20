@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <!-- including axios file in frontend -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <style>
+        body{
+             background: #000000;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+            margin: 0px;
+            padding: 0px;
+        }
+        .nav{
+            height: 59px;
+            width: 100%;
+            background: #000000;  /* fallback for old browsers */
+           
+        }
+        .nav-item1{
+            margin-right:140px ;
+            font-family: Impact, fantasy;
+            font-size: 28px;
+            text-decoration: none;
+            letter-spacing: .5px;
+            
+        }
+        .nav-item{
+            font-family: New Century Schoolbook, TeX Gyre Schola, serif;
+            font-size: 26px;
+            margin: 0px 0px 0px 0px;
+           /* padding: 0px -10px -4px 15px;*/
+          /*  padding-left: 12px;*/
+          /*  padding-top: -5px;*/
+         
+           margin-right: 30px;
+            
+
+        }
+        .nav-item:hover{
+          border: 2px solid rgb(75, 74, 74);
+          border-radius: 4px;
+          background-color: rgb(75, 74, 74);
+          opacity: 0.4px;
+        }
+        .nav-item2{
+            margin-left: 250px;
+            text-transform: capitalize;
+            font-family: Georgia, serif	;
+            font-size: 28px;
+        }
+         button{
+            
+            height: 35px;
+            width: 12rem;
+            font-size: 18px;
+            padding: 5px;
+            margin:0px 10px;
+            border-radius: 5px;
+            outline: none;
+            border: none;
+            transition: all 0.2s linear;
+            cursor: pointer;
+            margin-top: 300px;
+        }
+
+        button:hover{
+            background-color:rgb(108, 106, 122);
+            color: white;
+        }
+
+        form{
+            /* background-color:yellow; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 8px;
+            background: #BBD2C5;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #536976, #BBD2C5);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #536976, #BBD2C5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+        
+        #form1{
+            /* height: 30rem; */
+            height: auto;
+            width: 50rem;
+        }
+        
+        #form2{
+            height: 30rem;
+            width: 30rem;
+        }
+        
+        .container{
+            margin: 70px auto;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+        .container h2{
+            margin-top: 15px;
+        }
+        .form1-table{
+            margin-top: 10px;
+            width: 92%;
+            background-color: #094e6e;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            
+        }
+        .form1-table td{
+            padding-left: 35px;
+            border: 1px solid grey;
+        }
+        .btn-container{
+            margin: 80px auto;
+        }
+        h2{
+            font-size: 30px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        .form2-table{
+            margin-top: 10px;
+            width: 90%;
+            background-color: #094e6e;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            
+        }
+        .form2-table td{
+            padding-left: 30px;
+            border: 1px solid grey;
+        }
+        
+        table tr{
+            height: 40px;
+        }
+
+        .search{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0px;
+        }
+
+        .search label{
+            font-size: 20px;
+            font-family:Georgia, 'Times New Roman', Times, serif ;
+            margin-left: -30px;
+        }
+
+        .search input{
+            height: 30px;
+            width: 200px;
+            padding: 0px 14px;
+            font-size: 20px;
+            border-radius: 5px ;
+            background-color: white;
+            opacity: .8px;
+            border: 2px solid black;
+        }
+
+        .getAll-btn{
+            margin-bottom: 20px;
+        }
+
+        .get-btn{
+            margin-bottom: 40px;
+            margin-top: 185px;
+        }
+
+    </style>
+</head>
+<body>
+  <ul class="nav">
+  <li class="nav-item1">
+    <a class="nav-link" style="color: white ">Student Management Portal</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" style="color:aqua" href="/addStudentPage">Add Student</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" style="color: aqua"  href="/deleteStudentPage">Delete Student</a>
+  </li>
+ <li class="nav-item">
+    <a class="nav-link" style="color: aqua" href="/updateStudentPage">Update Student</a>
+  </li>
+  <li class="nav-item2">
+    <a class="nav-link disabled" style="color: white " href="#" tabindex="-1" aria-disabled="true">{{user.companyName}}</a>
+  </li>
+</ul>
+    <div class="container">
+        <form action="" id="form1">
+            <h2> Students List </h2>
+            <table class="form1-table">
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Roll Number</td>
+                        <td>Email</td>
+                    </tr>
+                </thead>
+            
+            </table>
+      <button type="submit" class="getAll-btn"> Get Students </button>
+        </form>
+    
+        <form action="http://localhost:3000/students/" method="get" id="form2">
+            <h2> Search Student </h2>
+
+            <div class="search">
+                <label for="rollno"> Roll no: </label>
+                <input type="text" name="rollno" id="rollno">
+
+            </div>
+           
+
+            <table class="form2-table">
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Roll Number</td>
+                        <td>Email</td>
+                    </tr>
+                </thead>
+                <tr>
+                    <td id="form2-name"></td>
+                    <td id="form2-roll"></td>
+                    <td id="form2-email"></td>
+                </tr>
+            </table>
+           <button type="submit" class="get-btn"> Search</button>
+        </form>
+    </div>
+
+
+
+    <script>
+
+
+        // submit button form 1
+        let btn1 = document.querySelector(".getAll-btn");
+
+        // submit button form 2
+        let btn2 = document.querySelector(".get-btn");
+
+        let input = document.querySelector('#rollno');
+
+
+
+
+        // FORM 2:
+        let nameContainer = document.getElementById('form2-name');
+        let rollContainer = document.getElementById('form2-roll');
+        let emailContainer = document.getElementById('form2-email');
+
+        btn2.addEventListener('click' , async(event)=>{
+            event.preventDefault();
+
+
+            let val = input.value ;
+
+            try{
+                let response = await axios.get(`http://localhost:3000/students/${val}`);
+                console.log(response.data.student) ;
+                let student = response.data.student ;
+                
+                nameContainer.textContent = student.name ;
+                rollContainer.textContent = student.rollno;
+                emailContainer.textContent = student.email ;
+                // alert(response.data.message) ;
+            }
+            catch(err){
+                nameContainer.textContent = "" ;
+                rollContainer.textContent = "" ;
+                emailContainer.textContent = "" ;
+                alert("No Such Student!!");
+                console.log(err) ;
+            }
+        })
+
+
+
+        // FORM 1:
+        let table1 = document.querySelector(".form1-table");
+
+        btn1.addEventListener('click' , async(event)=>{
+            event.preventDefault() ;
+
+            try{
+                let response = await axios.get(`http://localhost:3000/students`);
+                console.log(response.data) ;
+                let data = response.data ;          // contains the array of students info
+
+                table1.innerHTML = `<thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Roll Number</td>
+                        <td>Email</td>
+                    </tr>
+                </thead>` ;
+
+                data.map((stu) => {
+                    let tr = document.createElement('tr') ;
+                    let td1 = document.createElement('td') ;
+                    let td2 = document.createElement('td') ;
+                    let td3 = document.createElement('td') ;
+
+                    td1.textContent = stu.name ;
+                    td2.textContent = stu.rollno;
+                    td3.textContent = stu.email ;
+
+                    tr.appendChild(td1) ;
+                    tr.appendChild(td2) ;
+                    tr.appendChild(td3) ;
+
+                    table1.appendChild(tr) ;
+                })
+                
+
+            }
+            catch(err){
+                console.log("Error aaya hai!!") ;
+            }
+
+        })
+
+    </script>
+
+
+</body>
+</html>

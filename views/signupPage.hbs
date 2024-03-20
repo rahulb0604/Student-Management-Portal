@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- including axios file in frontend -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Signup page</title>
+        <style>
+
+        html{
+            height: 100%;
+            width: 100%;
+        }
+        #form-body{
+            
+            margin: auto ;
+            padding: 10px 2px 10px 2px;
+            box-sizing: border-box ;
+            border-radius: 5px ;
+            position: relative;
+            bottom: 30px;
+        }
+        h4{
+            color: black;
+        }
+        .main-box{
+            height: 50%;
+            width: 35%;
+            background-color: #ffffff;
+            box-sizing: border-box;
+            position: relative;
+            margin: auto;
+            border-radius: 10px;
+            
+        }
+        input{
+            padding: 10px;
+            font-size: 15px;
+            box-sizing: border-box;
+            border-radius: 4px ;
+            border: 2px solid #ccc ;
+            height: 1cm ;
+            width: 67% ;
+            margin-top: 6px ;
+            margin-left: 84px;
+            background-color: #ffffff;
+            opacity: 0.7;
+        }
+
+        label{
+            font-size: 18px ;
+        }
+
+        label,input{
+            font-family: sans-serif;
+        }
+        button{
+            font-size: 15px ;
+            margin-top: 1rem ;
+            cursor:pointer ;
+            background-color: hsl(209, 77%, 46%) ;
+            color: white ;
+            border: none ;
+            padding: 12px 10rem ;
+            border-radius: 4px ;
+            width: 67%;
+            margin-left: -8px;
+
+        }
+        button:hover{
+            background-color: hsl(207, 93%, 32%);
+        }
+
+        input:focus{
+            outline:2px solid black;
+        }
+
+        .form{
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            font-family:Noto Sans, sans-serif ;
+            color: white;
+            font-size: 28px;
+            letter-spacing: 1px;
+            margin-top: 7rem;
+            gap: 14px;
+        }
+
+        body{
+            background-image: linear-gradient(to right bottom, #1f1c2c, #393549, #555168, #736e89, #928dab);
+        }
+
+        .btn-container{
+            margin-right: auto;
+            margin-left: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        p{
+            margin-top: 1rem;
+        }
+
+        a:hover{
+            color: red;
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="main-box">
+    <div class="form">
+        <h4> Signup </h4>
+    </div>
+
+    <form>
+    <div id="form-body">
+        
+        <input type="text" name="companyName" id="companyName" placeholder="Username">
+        
+        <br>
+        <br>
+        
+        <input type="text" id="code" name="code" placeholder="Password">
+
+        <br>
+        <br>
+
+    
+        <input type="text" id="email" name="email" placeholder="Email">
+
+        <br>
+        <br>
+
+        <div class="btn-container">
+            <button type="submit" class="submit-btn"> SIGNUP </button>
+
+            <p>Already a existing User ?  <a href="/"> let's login Now  </a>  </p>
+
+        </div>
+
+    </div>
+    </div>
+    </form>
+
+
+    <script>
+
+        let company = document.querySelector("#companyName");
+        let code = document.querySelector("#code");
+        let emailInput = document.querySelector("#email");
+    
+
+        let btn = document.querySelector(".submit-btn");
+
+        btn.addEventListener('click', async (event) => {
+            event.preventDefault();
+
+            // login request through axios
+            try {
+
+                let companyCode = code.value ;
+                let companyName = company.value ;
+                let email = emailInput.value;
+
+
+                if (companyCode === '' || companyCode === '' || email === '') {
+                    alert("Please Enter Details Carefully Code !!");
+                    return;
+                };
+
+
+                try {
+                    let response = await axios.post(`http://localhost:3000/signup`,{
+                        companyName: companyName,
+                        companyCode: companyCode,
+                        email:email,
+                    });
+
+                    console.log(response.data);
+                    const data = response.data ;
+
+                        alert(data.message) ;
+                    
+                }
+                catch (err) {
+                    console.log(err.response.data) ;
+                    alert(err.response.data.message);
+                    return;
+                }
+            }
+            catch (err) {
+                console.log("Error in finding this company");
+            }
+
+        })
+    </script>
+
+</body>
+
+</html>
